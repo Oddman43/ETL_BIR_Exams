@@ -4,7 +4,7 @@ CREATE TABLE year (
     PRIMARY KEY ("id_year")
 );
 
-CREATE TABLE exam_type (
+CREATE TABLE exam (
     "id_type" INTEGER,
     "exam_type" TEXT,
     PRIMARY KEY ("id_type")
@@ -12,16 +12,22 @@ CREATE TABLE exam_type (
 
 CREATE TABLE questions (
     "id" INTEGER,
-    "year" INTEGER,
+    "exam_year" INTEGER,
     "exam_subject" INTEGER,
     "question" TEXT,
-    "option_1" TEXT,
-    "option_2" TEXT,
-    "option_3" TEXT,
-    "option_4" TEXT,
-    "option_5" TEXT,
-    "correct_option" TEXT,
     PRIMARY KEY ("id"),
-    FOREIGN KEY ("year") REFERENCES "year"("id_year"),
-    FOREIGN KEY ("exam_subject") REFERENCES "exam_type"("id_type"),
+    FOREIGN KEY ("exam_year") REFERENCES "year"("id_year"),
+    FOREIGN KEY ("exam_subject") REFERENCES "exam"("id_type"),
 );
+
+CREATE TABLE questions_options (
+    "question_id" INTEGER,
+    "option_num" INTEGER,
+    "option_text" TEXT,
+    "is_correct" BOOLEAN,
+    PRIMARY KEY ("question_id", "option_num"),
+    FOREIGN KEY ("question_id") REFERENCES "questions"("id")
+);
+
+-- Problema con FK
+-- Posible solucion es primero quitar en el shcema las FK y despues hacer ALTER TABLE para añadirlas antes de insert into
