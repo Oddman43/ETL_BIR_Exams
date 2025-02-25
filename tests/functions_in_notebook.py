@@ -19,4 +19,4 @@ def compute_expected_rows(year: int, topic: str) -> tuple:
             break
     if year >= 2021:
         max_rows = 1050
-    return max_rows, save_name_dict[topic]
+    return max_rows, f"clean_{save_name_dict[topic]}_{year}.csv"
