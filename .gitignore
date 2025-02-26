@@ -170,4 +170,4 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
-BIR_Questions_Extraction.code-workspace
+ETL_BIR_Exams.code-workspace
