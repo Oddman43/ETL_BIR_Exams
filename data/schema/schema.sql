@@ -17,7 +17,7 @@ CREATE TABLE questions (
     "question" TEXT,
     PRIMARY KEY ("id"),
     FOREIGN KEY ("exam_year") REFERENCES "year"("id_year"),
-    FOREIGN KEY ("exam_subject") REFERENCES "exam"("id_type"),
+    FOREIGN KEY ("exam_subject") REFERENCES "exam"("id_type")
 );
 
 CREATE TABLE questions_options (
@@ -28,6 +28,3 @@ CREATE TABLE questions_options (
     PRIMARY KEY ("question_id", "option_num"),
     FOREIGN KEY ("question_id") REFERENCES "questions"("id")
 );
-
--- Problema con FK
--- Posible solucion es primero quitar en el shcema las FK y despues hacer ALTER TABLE para añadirlas antes de insert into
