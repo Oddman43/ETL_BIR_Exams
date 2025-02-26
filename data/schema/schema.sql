@@ -21,10 +21,11 @@ CREATE TABLE questions (
 );
 
 CREATE TABLE questions_options (
+    "option_id" INTEGER,
     "question_id" INTEGER,
     "option_num" INTEGER,
     "option_text" TEXT,
     "is_correct" BOOLEAN,
-    PRIMARY KEY ("question_id", "option_num"),
+    PRIMARY KEY ("option_id"),
     FOREIGN KEY ("question_id") REFERENCES "questions"("id")
 );
