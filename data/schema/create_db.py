@@ -1,6 +1,6 @@
 import sqlite3
 
-path: str = "bir_warehouse.db"
+path: str = "../clean/bir_warehouse.db"
 years = [str(x) for x in range(2004, 2025, 1)]
 exam_type = ["bir", "fir", "qir", "mir"]
 
