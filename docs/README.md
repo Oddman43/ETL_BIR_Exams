@@ -37,6 +37,19 @@ Once this script is done it counts the number of lines that do not end with a do
 
 Another check is done once the fix is applied and if the number of rows is not equal to the expected it raises a Warning to check it manually.
 
+Once all the checks are done the dataframe is pivoted to get the following columns: 
+
+* Question
+* Option 1
+* Option 2
+* Option 3
+* Option 4
+* Option 5 if needed
+
+For the anwers dataframe the transform step it will depend if it comes from tsv file or txt.
+
+
+
 ### Load
 
 #### SQLite3
