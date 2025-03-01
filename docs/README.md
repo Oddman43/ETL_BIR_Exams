@@ -23,7 +23,19 @@ Faced with that dilema i began brainstorming and i ended up woth the idea of des
 
 ### Extract
 
+Using the oper source library PyPdf reads the exam pdf and the output is piped into a dataframe
+
+For the answers sheet can be either in tsv format, or txt with spaces as separator. The extraccion is done with Pandas directly using the .read_table function
+
+Depending if the answers sheet is in tsv or txt format the type 1 or 2 will be used.
+
 ### Transform
+
+The questions using pandas will remove all the artifacts, like page numbers or others, and white spaces. Once all artifacts are gone a function to deal with multines will be used, it checks if a line ends with "-" for truncated words and to detect if the next line is a question or options the function checks if the first element of the next line can be converted into an integer.
+
+Once this script is done it counts the number of lines that do not end with a dot, comma or interrogation and generates a list of ids to fix. The length lf this list will be compared with the theoretical number of incorrect rows that is calculated with the following formula number of questions * number of options - length of the dataframe. If the number of expected errors matches with the length of ids to fix it applies a second function to fix them, if there are more or less than expected prints +/- 2 rows for context and raises a Warning, so i could manualy check for the rows to fix.
+
+Another check is done once the fix is applied and if the number of rows is not equal to the expected it raises a Warning to check it manually.
 
 ### Load
 
