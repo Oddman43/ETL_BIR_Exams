@@ -1,5 +1,6 @@
 # ETL from pdf files 👷🏼 (WIP)
 Avg exam -> 8 mins
+Total 34 pdfs
 
 ## Motivation
 
