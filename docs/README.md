@@ -1,5 +1,6 @@
 # ETL from pdf files 👷🏼 (WIP)
 Avg exam -> 8 mins
+
 Total 34 pdfs
 
 ## Motivation
@@ -13,10 +14,10 @@ Faced with that dilema i began brainstorming and i ended up woth the idea of des
 
 * Python 3.xx
 * JupyterNotebooks
-* PyPdf librabry
-* Pandas librabry
-* Anki Connect
-* SQLite3
+* PyPdf librabry to extract the text from Pdf files
+* Pandas librabry for data cleaning and maniputaltion
+* Anki Connect for loading into anki
+* SQLite3 for saving to a databass
 
 ## Project Architecture
 
@@ -25,6 +26,12 @@ Faced with that dilema i began brainstorming and i ended up woth the idea of des
 ### Transform
 
 ### Load
+
+#### SQLite3
+
+#### csv files
+
+#### Anki
 
 ## Instalation and Usage
 
