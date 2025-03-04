@@ -7,6 +7,20 @@ Total 34 pdfs
 
 ![ETL BIR](ETL_BIR.png)
 
+## Table of Contents
+
+* [Motivation](#motivation)
+* [Technologies and Tools Used](#technologies-and-tools-used)
+* [Project Architecture](#project-architecture)
+    * [Initial considerations](#initial-considerations)
+    * [Extract](#extract)
+    * [Transform](#transform)
+    * [Load](#load)
+* [Instalation and Usage](#instalation-and-usage)
+* [What I Learned](#what-i-learned)
+* [Potential Improvments](#potential-improvments)
+
+
 ## Motivation
 
 As a self-studying candidate for the Internal Resident in Biology (BIR) exam, I faced the daunting task of efficiently reviewing a vast number of exam questions in PDF format. The tedious process of manual review quickly became a significant hurdle. To overcome this, I developed an ETL pipeline to automate the extraction and organization of these questions, seamlessly integrating them into Anki for streamlined and effective study sessions. This project transformed my exam preparation from a laborious chore into a personalized and efficient learning experience. For this, I explored various PDF text extraction methods and selected the open-source `pypdf` library for its user-friendly nature. Data manipulation and cleaning were accomplished using `pandas`, the gold standard in Python's data science ecosystem.
@@ -23,6 +37,12 @@ This project leverages the following technologies and tools:
 - **Anki Integration:** Anki Connect - To connect with Anki using an API.
 
 ## Project Architecture
+
+### Initial considerations
+
+Once I began making some proofs of concept I realised that every PDF file will have diferent issues, from artifacts of page nubmer beeing diferent, to specific problems when dealing with joining truncated lines.
+
+This compounded with the two diferent formatings of the answers sheet meant that i decided to make two templates depending on the format of answeer sheet plus that exams prior to 2015 have 5 options, and from 2015 - 2024 have 4 options meant i needed in total three templates
 
 ### Extract
 
@@ -67,6 +87,8 @@ The Anki deck can be found either in the data/clean folder or in [AnkiWeb](https
 ## Instalation and Usage
 
 ## Example output
+
+## What I Learned
 
 ## Potential Improvments
 
