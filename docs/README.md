@@ -3,21 +3,24 @@ Avg exam -> 8 mins
 
 Total 34 pdfs
 
+## Summary
+
+![ETL BIR](ETL_BIR.png)
+
 ## Motivation
 
-Last year when I began to study to become an Internal Resident in Biology by myself I knew I needed a way to review exam questions 
-
-Faced with that dilema i began brainstorming and i ended up woth the idea of designing an ETL pipeline to extract the questions from the pdfs and using some kind of Python script and uploading then to Anki using Anki Connect addon so i can review them efficiently.
-
+As a self-studying candidate for the Internal Resident in Biology (BIR) exam, I faced the daunting task of efficiently reviewing a vast number of exam questions in PDF format. The tedious process of manual review quickly became a significant hurdle. To overcome this, I developed an ETL pipeline to automate the extraction and organization of these questions, seamlessly integrating them into Anki for streamlined and effective study sessions. This project transformed my exam preparation from a laborious chore into a personalized and efficient learning experience. For this, I explored various PDF text extraction methods and selected the open-source `pypdf` library for its user-friendly nature. Data manipulation and cleaning were accomplished using `pandas`, the gold standard in Python's data science ecosystem.
 
 ## Technologies and Tools Used
 
-* Python 3.xx
-* JupyterNotebooks
-* PyPdf librabry to extract the text from Pdf files
-* Pandas librabry for data cleaning and maniputaltion
-* Anki Connect for loading into anki
-* SQLite3 for saving to a databass
+This project leverages the following technologies and tools:
+
+* **Programming Language:** Python 3.12
+* **Development Enviroment:** Jupyter Notebooks - Used for interactive development.
+* **PDF Extraction**: PyPDF 5.3.0 - Used to extract content from PDF files.
+* **Data Manipulation**: Pandas 2.2.2 - Used for data cleaning and transformation.
+* **Database:** SQLite3 - Used to store data in a relational database.
+- **Anki Integration:** Anki Connect - To connect with Anki using an API.
 
 ## Project Architecture
 
@@ -57,6 +60,9 @@ For the anwers dataframe the transform step it will depend if it comes from tsv 
 #### csv files
 
 #### Anki
+
+The Anki deck can be found either in the data/clean folder or in [AnkiWeb](https://ankiweb.net/shared/info/1201513810?cb=1741085089356)
+
 
 ## Instalation and Usage
 
