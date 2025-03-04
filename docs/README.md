@@ -1,7 +1,6 @@
 # ETL from pdf files 👷🏼 (WIP)
-Avg exam -> 8 mins
 
-Total 34 pdfs
+This project automates the extraction of questions from the Exams for Internal Resident PDFs found on the "Ministerio de Sanidad" site and it's corresponding answers sheet, cleans them, and loads the data into CSV, SQLite, and Anki formats, all in under 5 minutes per PDF, saving you valuable time.
 
 ## Summary
 
@@ -41,24 +40,26 @@ This project leverages the following technologies and tools:
 
 ### Initial considerations
 
-Early in the development process, I encounteres several challenges related to the variability of the PDF files. Each PDF presented unique issues, including:
+Early in the development process, I encountered several challenges related to the variability of the PDF files. Each PDF presented unique issues, including:
 
 * **Artifacts:** Page numbers and other elements often appeared as artifacts within the extracted text, requiring careful filtering and removal. For example, some PDFs consistently placed page numbers within the content area, while others had inconsistent placement.
-* **Truncated Lines:** Questions were often split across multiple lines due to the two column format of the original PDFs. These truncated lines needed to be intelligently joined to ensure accurate parsing and interpretation. Some common patterns included hyphens at the end of lines and inconsistent spacing between words.
+* **Truncated Lines:** Questions were often split across multiple lines due to the two-column format of the original PDFs. These truncated lines needed to be intelligently joined to ensure accurate parsing and interpretation. Some common patterns included hyphens at the end of lines and inconsistent spacing between words.
 
-Furthermore, I discovered two distinct answer sheet formats used in the exams, each requiring a different parsing approach. The exams from 2024 to 2018 the answers file were a tsv file structured in three columns with the column names "V" and "RC", and the exams from 2017 or previous had the answers as txt files separated with spaces with a single column containing in one row the number of question and the row below the correct option. Another difernce between the two ansers formats where that in the tsv file the anulated questions were marked with missing values, and in the txt file were marked with the letter "A". To address this, I developed two separate templates to accommodate these variations.
+Furthermore, I discovered two distinct answer sheet formats used in the exams, each requiring a different parsing approach. The exams from 2024 to 2018 had answer files in TSV format, structured in six pairs of columns with the column names "V" and "RC." The exams from 2017 and earlier had answers in TXT files, separated by spaces, with the following schema: one row for the question number and the row below for the correct option. Another difference between the two answer formats was that, in the TSV files, annulled questions were marked with missing values, whereas in the TXT files, they were marked with the letter "A." To address this, I developed two separate templates to accommodate these variations.
 
-Finally, the number of answer options changed from five to four starting in 2015. This meant that I needed to create a third teplate to handle exams from 2015 onwards.
+Finally, the number of answer options changed from five to four starting in 2015. This meant that I needed to create a third template to handle exams from 2015 onwards.
 
-These challenges highlighted the need for a flexible and adaptable solution capable of handling the nuances of different PDF formats and exam structures. The main logic for the exam questions was the same for all exams, only modifing it to remove certain artifacts. For the anwsers, I implemented two distinc ways to parse and slice the answers data to get a Dataframe with only two columns one with number of the quesiton the other the correct option, ensuring accurate extraction and processing of the exam questions.
+These challenges highlighted the need for a flexible and adaptable solution capable of handling the nuances of different PDF formats and exam structures. The main logic for extracting the exam questions was the same for all exams, with only minor modifications to remove certain artifacts. For the answers, I implemented two distinct methods to parse and slice the data, using `pandas` DataFrames to create a consistent two-column format, one with the question number and the other with the correct option, ensuring accurate extraction and processing of the exam questions.
+
+I also decided to implement a function to compute the expected number of rows depending on the exam year, since different years have different numbers of options and questions. This function uses a dictionary to determine the expected count. The extracted data is then validated by comparing the actual number of rows with the expected number. If there's a mismatch, an error is raised to alert the user of potential data extraction issues.
 
 ### Extract
 
-Using the oper source library PyPdf reads the exam pdf and the output is piped into a dataframe
+The extraction process begins by reading the exam PDF using the open-source `PyPDF` library. `PyPDF` parses the PDF excluding the first one or two pages, and the resulting text is then piped into a `pandas` DataFrame for further processing.
 
-For the answers sheet can be either in tsv format, or txt with spaces as separator. The extraccion is done with Pandas directly using the .read_table function
+The answer sheets are handled differently depending on their format. Exams from 2024 to 2018 use TSV files, while exams from 2017 and earlier use space-separated TXT files.
 
-Depending if the answers sheet is in tsv or txt format the type 1 or 2 will be used.
+The extraction of booth types of formates is udes using `pandas` `read_table` method, but adjusting the separator 
 
 ### Transform
 
@@ -71,10 +72,7 @@ Another check is done once the fix is applied and if the number of rows is not e
 Once all the checks are done the dataframe is pivoted to get the following columns: 
 
 * Question
-* Option 1
-* Option 2
-* Option 3
-* Option 4
+* Options columns ranging from 1 to 4
 * Option 5 if needed
 
 For the anwers dataframe the transform step it will depend if it comes from tsv file or txt.
