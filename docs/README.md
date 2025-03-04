@@ -107,6 +107,11 @@ In csv file:
 
 In SQLite3 database: 
 
+Question Table
+![Question Table](dbquestion_example.png)
+
+Options table
+![Options Table](dboptions_example.png)
 
 
 ## What I Learned
