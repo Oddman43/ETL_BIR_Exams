@@ -34,7 +34,7 @@ This project leverages the following technologies and tools:
 * **PDF Extraction**: PyPDF 5.3.0 - Used to extract content from PDF files.
 * **Data Manipulation**: Pandas 2.2.2 - Used for data cleaning and transformation.
 * **Database:** SQLite3 - Used to store data in a relational database.
-- **Anki Integration:** Anki Connect - To connect with Anki using an API.
+* **Anki Integration:** Anki Connect - To connect with Anki using an API.
 
 ## Project Architecture
 
