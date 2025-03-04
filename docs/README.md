@@ -121,7 +121,7 @@ erDiagram
 
 #### Anki
 
-The Anki deck can be found either in the data/clean folder or in [AnkiWeb](https://ankiweb.net/shared/info/1201513810?cb=1741085089356)
+The Anki deck can be found either in the data/clean folder or in [AnkiWeb](https://ankiweb.net/shared/info/1201513810?cb=1741110674865)
 
 Each card has the following structure:
 * Year number and three leter abreviation of the exam for easy identification of the question
