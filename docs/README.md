@@ -5,7 +5,7 @@ Total 34 pdfs
 
 ## Summary
 
-![ETL BIR](ETL_BIR.png)
+![ETL BIR](ETL_BIR_gh.png)
 
 ## Table of Contents
 
