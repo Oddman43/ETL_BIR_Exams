@@ -91,14 +91,18 @@ The Anki deck can be found either in the data/clean folder or in [AnkiWeb](https
 
 Raw DataFrame extracted from PDF files:
 
+![Raw DataFrame](rawdf_example.png)
 
 Clean DataFramse with answers:
 
+![Clean DataFrame](cleandf_example.png)
 
 In Anki:
+
 ![Anki Example](anki_example.png)
 
 In csv file:
+
 ![csv Example](csv_example.png)
 
 In SQLite3 database: 
