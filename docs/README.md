@@ -81,6 +81,7 @@ For the anwers dataframe the transform step it will depend if it comes from tsv 
 
 #### Anki
 
+
 The Anki deck can be found either in the data/clean folder or in [AnkiWeb](https://ankiweb.net/shared/info/1201513810?cb=1741085089356)
 
 
@@ -88,7 +89,28 @@ The Anki deck can be found either in the data/clean folder or in [AnkiWeb](https
 
 ## Example output
 
+Raw DataFrame extracted from PDF files:
+
+
+Clean DataFramse with answers:
+
+
+In Anki:
+![Anki Example](anki_example.png)
+
+In csv file:
+![csv Example](csv_example.png)
+
+In SQLite3 database: 
+
+
+
 ## What I Learned
+
+* Cuando escribes a una db añadir suficientes constraints, ya que si dos preguntas tienen el mismo enunciado puede causar problemas, asi que añadir mas constraints como año o tipo de examen.
+* Using pandas to manipulate and clean data.
+* Implement validation steps in the pipeline 
 
 ## Potential Improvments
 
+* A better heuristic or now way to detect and fix truncated lines so there is no need to manual checking.
