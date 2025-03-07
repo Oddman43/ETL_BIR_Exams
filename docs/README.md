@@ -119,6 +119,8 @@ erDiagram
     QUESTIONS ||--|{ QUESTIONS_OPTIONS : "have diferent"
 ```
 
+Porque esta schema
+
 #### Anki
 
 The Anki deck can be found either in the data/clean folder or in [AnkiWeb](https://ankiweb.net/shared/info/1201513810?cb=1741110674865)
