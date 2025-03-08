@@ -106,23 +106,24 @@ Finally, the DataFrame is pivoted to restructure the data. This transformation r
 
 ##### From TSV file
 
-Since the resulting DataFrame from reading the tsv file has the following columns:
-
-* 
-
-
+This process is necessary because the TSV answer files are structured with multiple sets of answer columns, which makes direct analysis difficult. To address this, the original and duplicate pairs of columns are extracted into separate DataFrames. Each extracted DataFrame is then renamed to standardize the column names to "V" and "RC," which facilitates subsequent processing by creating a uniform schema ready to be joined with the questions DataFrame. Finally, all DataFrames are concatenated into a single DataFrame, `answers_df_clean`
 ##### From TXT file
+
+This section focuses on cleaning and transforming the answer key data. The original data requires restructuring to organize question numbers and correct answers into a usable DataFrame. To make a longer DataFrame so it has two columns, it creates two empty lists. It iterates through the rows of the DataFrame in steps of two. For each pair of rows, the values from the first row corresponds to the number of the question, and the values from the second row correspond to the correct option. It then creates a new DataFrame with two columns. Finally, the code sorts the DataFrame by the "V" column. The resulting DataFrame is ready to be joinned to the questions DataFrame.
+
+#### Joining the DataFrames
+
+The final step of the transformation is to join the questions DataFrame and answers DataFrame. This process includes converting the answers column to an integer and adding an extra column named year.
 
 ### Load
 
 #### csv files
 
-The clean data was first saved to individual csv files, as a backup, and to fix spacing issues like "T h i s  i s  a n  e x a m p l e" that were faster and easier to fix in a csv file and then from the csv file read it with pandas and load into the database
+The cleaned data was initially saved to individual CSV files. This served as a backup and facilitated the correction of spacing issues (e.g., "T h i s  i s  a n  e x a m p l e") that were more efficiently addressed in a text editor. The corrected data was then read back into pandas DataFrames from these CSV files and loaded into the database.
 
-Finally once all the data was stored in the database before loading the data into Anki it was saved into a csv file containing all the exams.
+Before loading the data into Anki, a final CSV file containing all the exams was generated from the data stored in the database.
 
 #### SQLite3
-Database Schema
 
 ```mermaid
 erDiagram
@@ -153,7 +154,14 @@ erDiagram
     QUESTIONS ||--|{ QUESTIONS_OPTIONS : "have diferent"
 ```
 
-Porque esta schema
+The database schema is designed to efficiently store and manage exam questions and their associated data. The key tables and their relationships are as follows:
+
+* year: Stores information about the exam year.
+* exam: Stores information about the exam type.
+* questions: Stores the actual exam questions, linking them to the year and exam type.
+* questions_options: Stores the answer options for each question.
+
+This schema is designed with normalization principles in mind to ensure data integrity and flexibility. A key design decision was the handling of answer options. Since the number of answer options varies between exams (4 or 5 options), instead of creating a fixed number of columns for options in the questions table, the options are stored in a separate questions_options table. 
 
 #### Anki
 
