@@ -63,21 +63,55 @@ The extraction of booth types of formates is udes using `pandas` `read_table` me
 
 ### Transform
 
-The questions using pandas will remove all the artifacts, like page numbers or others, and white spaces. Once all artifacts are gone a function to deal with multines will be used, it checks if a line ends with "-" for truncated words and to detect if the next line is a question or options the function checks if the first element of the next line can be converted into an integer.
+The transformation phase focuses on cleaning and structuring the extracted data.
 
-Once this script is done it counts the number of lines that do not end with a dot, comma or interrogation and generates a list of ids to fix. The length lf this list will be compared with the theoretical number of incorrect rows that is calculated with the following formula number of questions * number of options - length of the dataframe. If the number of expected errors matches with the length of ids to fix it applies a second function to fix them, if there are more or less than expected prints +/- 2 rows for context and raises a Warning, so i could manualy check for the rows to fix.
+#### PDF Exam
 
-Another check is done once the fix is applied and if the number of rows is not equal to the expected it raises a Warning to check it manually.
+First, `pandas` is used to remove artifacts, such as page numbers and excessive whitespace, from the extracted text. This involves using functions like `str.replace()` and `str.strip()` to clean the text within the DataFrame.
 
-Once all the checks are done the dataframe is pivoted to get the following columns: 
+Next, a function is used to handle multi-line questions and answers. This function addresses cases where questions or answers are split across multiple lines.
+
+* It detects truncated words by checking if a line ends with a hyphen ("-").
+* It uses a heuristic to determine if the following line is a question or an option. This heuristic checks if the first element of the next line can be converted to an integer. If so, it assumes it's an option or the next question.
+
+To ensure data integrity, a multi-step error detection and correction process is implemented:
+
+1. Error Identification:
+
+
+    * The number of lines that do not end with a punctuation mark (dot, comma, or question mark) is counted. These lines are considered potentially incomplete.
+    * A list of IDs corresponding to these lines is generated.
+    * The theoretical number of incorrect rows is calculated using the formula: `number of questions * number of options - length of the DataFrame`.
+
+2. Error Correction:
+
+    * The length of the list of IDs to fix is compared with the theoretical number of incorrect rows.
+    * If the numbers match, a second function is applied to fix the errors. This function takes the list of IDs, sorts it in descending order to avoid indexing issues, and concatenates the row below the row with the ID.
+    * If the numbers differ, the script prints a few rows (e.g., +/- 2 rows) for context and raises a `Warning`, prompting manual inspection of the rows and then once the incorrect IDs are identified the function to fix it is applyed.
+
+3. Final Validation:
+
+    * After the error correction, a final check is performed. If the number of rows in the DataFrame does not match the expected number of rows, a `Warning` is raised, requiring manual inspection.
+
+Finally, the DataFrame is pivoted to restructure the data. This transformation results in a DataFrame with the following columns:
 
 * Question
-* Options columns ranging from 1 to 4
-* Option 5 if needed
+* Option 1
+* Option 2
+* Option 3
+* Option 4
+* Option 5 (added if needed, depending on the exam format)."
 
-For the anwers dataframe the transform step it will depend if it comes from tsv file or txt.
+#### Answers Sheet
+
+##### From TSV file
+
+Since the resulting DataFrame from reading the tsv file has the following columns:
+
+* 
 
 
+##### From TXT file
 
 ### Load
 
