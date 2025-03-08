@@ -180,6 +180,35 @@ The target tags have the following hierarchy:
 
 ## Instalation and Usage
 
+1. Clone the repository
+
+```bash
+git clone https://github.com/Oddman43/ETL_BIR_Exams
+cd ETL_BIR_Exams
+```
+
+2. Install requirements
+
+    Using pip
+
+```bash
+pip install -r requirements.txt
+```
+
+    Using Anaconda (Recomended)
+
+```bash
+conda create -n etl_bir
+conda activate etl_bir
+pip install -r requirements.txt
+```
+
+3. Use the templates and follow the steps
+
+```bash
+cd templates
+```
+
 ## Example output
 
 ### Raw DataFrame extracted from PDF files:
@@ -211,10 +240,10 @@ Options table
 
 ## What I Learned
 
-* Cuando escribes a una db añadir suficientes constraints, ya que si dos preguntas tienen el mismo enunciado puede causar problemas, asi que añadir mas constraints como año o tipo de examen.
-* Use pandas and numpy to manipulate and clean data.
-* Implement validation steps in the pipeline.
-
+* **Database Constraints:** When designing a database, it's crucial to implement sufficient constraints. I encountered a bug due to duplicate question statements, which could have been prevented by adding more constraints, such as exam year and exam type when inserting rows, to ensure uniqueness.
+* **PDF Extraction and Text Data Handling:** This project provided valuable experience in extracting data from PDF files and working with text data, including cleaning and manipulation.
+* **Data Manipulation with Pandas and NumPy:** This project provided valuable experience in using pandas and NumPy to manipulate and clean data effectively
+* **Pipeline Validation:** Implementing validation steps throughout the ETL pipeline is essential for maintaining data quality and identifying potential errors early in the process.
 ## Potential Improvments
 
-* A better heuristic or a new way to detect and fix truncated lines so there is no need for manual checking.
+* A better heuristic or a new way to detect and fix truncated lines avoiding so many manual checking.
