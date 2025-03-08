@@ -125,6 +125,15 @@ Before loading the data into Anki, a final CSV file containing all the exams was
 
 #### SQLite3
 
+The database schema is designed to efficiently store and manage exam questions and their associated data. The key tables and their relationships are as follows:
+
+* year: Stores information about the exam year.
+* exam: Stores information about the exam type.
+* questions: Stores the actual exam questions, linking them to the year and exam type.
+* questions_options: Stores the answer options for each question.
+
+This schema is designed with normalization principles in mind to ensure data integrity and flexibility. A key design decision was the handling of answer options. Since the number of answer options varies between exams (4 or 5 options), instead of creating a fixed number of columns for options in the questions table, the options are stored in a separate questions_options table. 
+
 ```mermaid
 erDiagram
     YEAR {
@@ -153,15 +162,6 @@ erDiagram
     EXAM ||--|{ QUESTIONS : "has"
     QUESTIONS ||--|{ QUESTIONS_OPTIONS : "have diferent"
 ```
-
-The database schema is designed to efficiently store and manage exam questions and their associated data. The key tables and their relationships are as follows:
-
-* year: Stores information about the exam year.
-* exam: Stores information about the exam type.
-* questions: Stores the actual exam questions, linking them to the year and exam type.
-* questions_options: Stores the answer options for each question.
-
-This schema is designed with normalization principles in mind to ensure data integrity and flexibility. A key design decision was the handling of answer options. Since the number of answer options varies between exams (4 or 5 options), instead of creating a fixed number of columns for options in the questions table, the options are stored in a separate questions_options table. 
 
 #### Anki
 
