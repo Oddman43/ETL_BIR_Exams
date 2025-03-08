@@ -1,4 +1,4 @@
-# ETL from pdf files 👷🏼 (WIP)
+# Transform PDFs to Anki Cards: A Comprehensive Pipeline for Question Extraction
 
 This project automates the extraction of questions from the Exams for Internal Resident PDFs found on the "Ministerio de Sanidad" site and it's corresponding answers sheet, cleans them, and loads the data into CSV, SQLite, and Anki formats, all in under 5 minutes per PDF, saving you valuable time.
 
@@ -189,13 +189,13 @@ cd ETL_BIR_Exams
 
 2. Install requirements
 
-    Using pip
+* Using pip
 
 ```bash
 pip install -r requirements.txt
 ```
 
-    Using Anaconda (Recomended)
+* Using Anaconda (Recomended)
 
 ```bash
 conda create -n etl_bir
@@ -205,9 +205,7 @@ pip install -r requirements.txt
 
 3. Use the templates and follow the steps
 
-```bash
-cd templates
-```
+The templates can be found in the templates folder. To extract the text from a recent exam (after 2020), use template 1. Copy the file into the scripts folder and follow the steps in the Jupyter Notebook
 
 ## Example output
 
@@ -244,6 +242,8 @@ Options table
 * **PDF Extraction and Text Data Handling:** This project provided valuable experience in extracting data from PDF files and working with text data, including cleaning and manipulation.
 * **Data Manipulation with Pandas and NumPy:** This project provided valuable experience in using pandas and NumPy to manipulate and clean data effectively
 * **Pipeline Validation:** Implementing validation steps throughout the ETL pipeline is essential for maintaining data quality and identifying potential errors early in the process.
+
 ## Potential Improvments
 
-* A better heuristic or a new way to detect and fix truncated lines avoiding so many manual checking.
+* **Enhanced Truncated Line Handling:** Implement a more robust heuristic or develop a novel algorithm to accurately detect and automatically correct truncated lines. This would significantly reduce the need for manual checks and improve the pipeline's efficiency.
+* **Pipeline Automation:** Further automate the pipeline to process multiple exams in a single run. Currently, each exam is processed separately due to variations in the PDF files. However, with the knowledge gained, it is believed that the pipeline can be enhanced to handle a wider range of PDF file issues automatically.
