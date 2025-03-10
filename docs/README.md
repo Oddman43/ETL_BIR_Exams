@@ -1,6 +1,6 @@
 # Transform PDFs to Anki Cards: A Comprehensive Pipeline for Question Extraction
 
-This project automates the extraction of questions from the Exams for Internal Resident PDFs found on the "Ministerio de Sanidad" site and it's corresponding answers sheet, cleans them, and loads the data into CSV, SQLite, and Anki formats, all in under 5 minutes per PDF, saving you valuable time.
+This project automates the extraction of questions from the Exams for Internal Resident PDFs found on the Ministerio de Sanidad site and it's corresponding answers sheet, cleans them, and loads the data into CSV, SQLite, and Anki formats, all in under 5 minutes per PDF.
 
 ## Summary
 
