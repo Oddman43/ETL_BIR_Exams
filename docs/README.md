@@ -1,6 +1,6 @@
 # Transform PDFs to Anki Cards: A Comprehensive Pipeline for Question Extraction
 
-This project automates the extraction of questions from the Exams for Internal Resident PDFs found on the "Ministerio de Sanidad" site and it's corresponding answers sheet, cleans them, and loads the data into CSV, SQLite, and Anki formats, all in under 5 minutes per PDF, saving you valuable time.
+This project automates the extraction of questions from the Exams for Internal Resident PDFs found on the Ministerio de Sanidad site and it's corresponding answers sheet, cleans them, and loads the data into CSV, SQLite, and Anki formats, all in under 5 minutes per PDF.
 
 ## Summary
 
@@ -31,8 +31,7 @@ This project leverages the following technologies and tools:
 * **Programming Language:** Python 3.12
 * **Development Enviroment:** Jupyter Notebooks - Used for interactive development.
 * **PDF Extraction**: PyPDF 5.3.0 - Used to extract content from PDF files.
-* **Data Manipulation**: Pandas 2.2.2 - Used for data cleaning and transformation.
-* **Data Manipulation**: Numpy 1.26.4 - Used for data cleaning.
+* **Data Manipulation**: Pandas 2.2.2 and Numpy 1.26.4 - Used for data cleaning and transformation.
 * **Database:** SQLite3 - Used to store data in a relational database.
 * **Anki Integration:** Anki Connect - To connect with Anki using an API.
 
@@ -43,7 +42,7 @@ This project leverages the following technologies and tools:
 Early in the development process, I encountered several challenges related to the variability of the PDF files. Each PDF presented unique issues, including:
 
 * **Artifacts:** Page numbers and other elements often appeared as artifacts within the extracted text, requiring careful filtering and removal. For example, some PDFs consistently placed page numbers within the content area, while others had inconsistent placement.
-* **Truncated Lines:** Questions were often split across multiple lines due to the two-column format of the original PDFs. These truncated lines needed to be intelligently joined to ensure accurate parsing and interpretation. Some common patterns included hyphens at the end of lines and inconsistent spacing between words.
+* **Truncated Lines:** Questions were often split across multiple lines due to the two-column format of the original PDFs. These truncated lines needed to be joined to ensure accurate parsing and interpretation. Some common patterns included hyphens at the end of lines and inconsistent spacing between words.
 
 Furthermore, I discovered two distinct answer sheet formats used in the exams, each requiring a different parsing approach. The exams from 2024 to 2018 had answer files in TSV format, structured in six pairs of columns with the column names "V" and "RC." The exams from 2017 and earlier had answers in TXT files, separated by spaces, with the following schema: one row for the question number and the row below for the correct option. Another difference between the two answer formats was that, in the TSV files, annulled questions were marked with missing values, whereas in the TXT files, they were marked with the letter "A." To address this, I developed two separate templates to accommodate these variations.
 
