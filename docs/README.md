@@ -39,7 +39,7 @@ This project leverages the following technologies and tools:
 
 ### Initial considerations
 
-Early in the development process, I encountered several challenges related to the variability of the PDF files. Each PDF presented unique issues, including:
+Early in the development process, I encountered several challenges related to the variability of the PDF files. Each PDF presented unique issues, including
 
 * **Artifacts:** Page numbers and other elements often appeared as artifacts within the extracted text, requiring careful filtering and removal. For example, some PDFs consistently placed page numbers within the content area, while others had inconsistent placement.
 * **Truncated Lines:** Questions were often split across multiple lines due to the two-column format of the original PDFs. These truncated lines needed to be joined to ensure accurate parsing and interpretation. Some common patterns included hyphens at the end of lines and inconsistent spacing between words.
